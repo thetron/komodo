@@ -35,6 +35,12 @@ Komodo is set up to (try and) be as abstract as possible. Queuing a function wor
 
 	Komodo.queue object, :function, [arg1, arg2]
 
+For example:
+	
+	Komodo.queue @image, :resize, {:width => 900, :height => 450}
+	# -- or --
+	Komodo.queue UserMailer.send_registration_notification(@user), :deliver
+
 Komodo will automatically add and remove workers as the queue fills up and empties, respectively.
 
 # Notes
