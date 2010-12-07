@@ -5,12 +5,12 @@ class Komodo < Struct.new(:obj, :func, :args)
     Delayed::Job.enqueue Komodo.new(obj, func, args)
   end
     
-  protected
   # nothing of note here
   def perform
     obj.send(func, args)
   end
   
+  protected
   # adds a heroku worker, if required
   def enqueue(job)
     if Rails.env == "production" && Delayed::Job.count == 0
