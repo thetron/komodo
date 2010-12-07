@@ -15,7 +15,7 @@ class Komodo < Struct.new(:obj, :func, :args)
   def enqueue(job)
     if Rails.env == "production" && Delayed::Job.count == 0
       heroku = Heroku::Client.new(@@config['username'], @@config['password'])
-      heroku.set_workers(@@config['application_name'], 1)
+      heroku.set_workers(@@config['application_name'], @@config['max_workers'])
     end
   end
   
