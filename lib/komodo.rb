@@ -2,7 +2,7 @@ class Komodo < Struct.new(:obj, :func, :args)
   # delayed_job wrapper, creates a new monitored job and queues it
   def self.queue(obj, func, args = [])
     Komodo.configure unless defined?(@@config)
-    Delayed::Job.enqueue MonitoredJob.new(obj, func, args)
+    Delayed::Job.enqueue Komodo.new(obj, func, args)
   end
     
   protected
